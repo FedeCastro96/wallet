@@ -2,6 +2,7 @@
 // variables
 let dolaresAComprar = null; // inicia sin valor
 let saldoPesos = 135000;
+let saldoDolares = 0; 
 const tipoDeCambio = 1350;
 let montoEnPesos; 
 console.log('El saldo inicial es de $',saldoPesos)
@@ -9,9 +10,26 @@ console.log('El saldo inicial es de $',saldoPesos)
 
 //Apuntar al doc
 const aputarSaldo = document.getElementById("saldo");
+const aputarSaldoDolares = document.getElementById("saldo-dolares");
 const apuntarDolares = document.getElementById("dolares");
+// Capturar el valor ingresado por el usuario
+document.getElementById("comprar").addEventListener("click", comprarDolares);
 
 //Funciones
+
+function inicializarSaldos() {
+    // Obtener saldos del localStorage
+    const saldoPesosGuardado = localStorage.getItem("saldoPesos");
+    const saldoDolaresGuardado = localStorage.getItem("saldoDolares");
+    
+    // Si hay valores en localStorage, usarlos. De lo contrario, usar los valores iniciales.
+    saldoPesos = saldoPesosGuardado ? parseFloat(saldoPesosGuardado) : saldoPesos;
+    saldoDolares = saldoDolaresGuardado ? parseFloat(saldoDolaresGuardado) : saldoDolares;
+
+    // Actualizar la interfaz
+    aputarSaldo.innerHTML = `Saldo en Pesos: $ ${saldoPesos}`;
+    aputarSaldoDolares.innerHTML = `Saldo en Dolares: USD ${saldoDolares}`;
+}
 
 function comprarDolares(){
     // 1. Capturar cuánto quiere comprar el usuario
@@ -44,17 +62,24 @@ function comprarDolares(){
         apuntarDolares.value = '';
     }else{
         // el usuario tiene suficiente saldo
-        saldoPesos= saldoPesos-montoEnPesos
-        console.log("El saldo restante es: $",saldoPesos)
-        alert("Compra exitosa. Su saldo se ha actualizado.")
-        aputarSaldo.innerHTML = `Saldo en Pesos: $ ${saldoPesos} `
+        saldoPesos= saldoPesos-montoEnPesos;
+        saldoDolares= saldoDolares + dolaresAComprar
+        localStorage.setItem("saldoPesos",saldoPesos);
+        localStorage.setItem("saldoDolares",saldoDolares);
+        console.log("El saldo en pesos restante es: $",saldoPesos);
+        console.log("El saldo en dolares es: $",saldoDolares);
+        alert("Compra exitosa. Su saldo se ha actualizado.");
+        aputarSaldo.innerHTML = `Saldo en Pesos: $ ${saldoPesos} `;
+        aputarSaldoDolares.innerHTML = `Saldo en Dolares: USD ${saldoDolares}`
     }
 
 }
 
+// Inicializar saldos al cargar la página
+window.onload = inicializarSaldos;
 
 
-// Capturar el valor ingresado por el usuario
-document.getElementById("comprar").addEventListener("click", comprarDolares);
+
+
 
 
