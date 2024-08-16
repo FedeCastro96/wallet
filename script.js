@@ -5,6 +5,7 @@ let saldoPesos = 135000;
 let saldoDolares = 0; 
 const tipoDeCambio = 1350;
 let montoEnPesos; 
+let transacciones = []; 
 console.log('El saldo inicial es de $',saldoPesos)
 
 
@@ -12,6 +13,7 @@ console.log('El saldo inicial es de $',saldoPesos)
 const aputarSaldo = document.getElementById("saldo");
 const aputarSaldoDolares = document.getElementById("saldo-dolares");
 const apuntarDolares = document.getElementById("dolares");
+const apuntarTransacciones = document.getElementById("historial-transacciones")
 // Capturar el valor ingresado por el usuario
 document.getElementById("comprar").addEventListener("click", comprarDolares);
 
@@ -29,6 +31,11 @@ function inicializarSaldos() {
     // Actualizar la interfaz
     aputarSaldo.innerHTML = `Saldo en Pesos: $ ${saldoPesos}`;
     aputarSaldoDolares.innerHTML = `Saldo en Dolares: USD ${saldoDolares}`;
+}
+
+function inicializarTransacciones(){
+    const transaccionesGuardadas = localStorage.getItem("transacciones");
+    transacciones = transaccionesGuardadas ? JSON.parse(transaccionesGuardadas) : [];
 }
 
 function comprarDolares(){
@@ -66,17 +73,49 @@ function comprarDolares(){
         saldoDolares= saldoDolares + dolaresAComprar
         localStorage.setItem("saldoPesos",saldoPesos);
         localStorage.setItem("saldoDolares",saldoDolares);
+
+        // Crear y añadir una nueva transacción al array
+        const nuevaTransaccion = {
+            fecha: new Date().toLocaleString(),
+            dolaresComprados: dolaresAComprar,
+            montoEnPesos: montoEnPesos,
+            saldoRestante: saldoPesos
+        }
+
+        transacciones.push(nuevaTransaccion);
+        localStorage.setItem("transacciones",JSON.stringify(transacciones));
+
+
         console.log("El saldo en pesos restante es: $",saldoPesos);
         console.log("El saldo en dolares es: $",saldoDolares);
         alert("Compra exitosa. Su saldo se ha actualizado.");
         aputarSaldo.innerHTML = `Saldo en Pesos: $ ${saldoPesos} `;
         aputarSaldoDolares.innerHTML = `Saldo en Dolares: USD ${saldoDolares}`
+        mostrarHistorialTransacciones();
     }
 
 }
 
+// Mostrar transacciones dentro de UL como Li
+function mostrarHistorialTransacciones(){
+    apuntarTransacciones.innerHTML= ""; // limpiar el contenido anterior
+
+    transacciones.forEach(transaccion => {
+        const li = document.createElement("li");
+        li.textContent = `Fecha: ${transaccion.fecha} - Compraste USD ${transaccion.dolaresComprados} por $${transaccion.montoEnPesos}. Saldo restante:$${transaccion.saldoRestante}`
+        apuntarTransacciones.appendChild(li);
+    });
+}
+
+
+
 // Inicializar saldos al cargar la página
-window.onload = inicializarSaldos;
+window.onload = function() {
+    inicializarSaldos();
+    inicializarTransacciones();
+    mostrarHistorialTransacciones();
+};
+
 
 
 

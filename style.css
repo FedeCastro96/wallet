@@ -16,6 +16,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    width: 800px;
 }
 
 .balance, .purchase-section {
@@ -49,3 +50,23 @@ input[type="number"]::-webkit-inner-spin-button {
     margin: 0;
 }
 
+.transaction-history{
+    margin-top: 20px;
+    text-align: left;
+    border: 1px solid blck;
+}
+
+.transaction-history h2{
+    font-size: 18px;
+    margin: 10px; 
+    background-color: rgba(100, 95, 95, 0.1);
+}
+
+.transaction-history ul li {
+    background-color: #f9f9f9;
+    margin-bottom: 5px;
+    padding:10px; 
+    border-radius: 5px;
+    font-style: italic;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
