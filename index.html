@@ -8,24 +8,41 @@
 </head>
 <body>
     <div class="wallet-container">
-        <h1>Compre sus dólares 💸</h1>
+        <h1>💸 Simulador de compra y venta de dólares 💸</h1>
+        <p id="Nota">
+            Gracias por utilizar el simulador de compra y venta de dólares. <br>
+            Los valores se actualizan en tiempo real según la cotización del dólar blue. <br>
+            La simulación comienza con un saldo inicial de ARS 2.000.000 y USD 10.
+        </p>
         <div class="balance">
-            <p>Cotización del día: $1350 </p>
+            <h2>Billetera</h2>
+            <p id="cotizacionCompra">Cotización de compra del día: </p>
+            <p id="cotizacionVenta">Cotización de venta del día:</p>
             <p id= "saldo">Saldo en Pesos: $ 135000 </p>
             <p id="saldo-dolares">Saldo en Dólares: USD 0</p>
         </div>
         <div class="purchase-section">
             <label for="dolares">Comprar Dólares: </label>
-            <input type="number" id="dolares" min="1">
+            <input id="dolares" type="number" class="purchase-input" min="1" >
             <button id="comprar">Comprar</button>
+        </div>
+        <div class="sale-section">
+            <label for="vender-dolares"> Vender Dólares : </label>
+            <input id="vender-dolares" type="number" class="sale-input" min="1">
+            <button id="vender">Vender</button>
         </div>
         <div class="transaction-history">
             <h2>🔂 Historial de Transacciones 🔂</h2>
             <ul id="historial-transacciones"></ul>
+            <p id="lista-transacciones"> ⌛Sin transacciones todavía ⌛</p>
         </div>
+
     </div>
 
-    
+    <div class="reiniciar-cont">
+        <button class="reiniciar" id="reiniciar">Reiniciar</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="script.js"></script>
 </body>
 </html>

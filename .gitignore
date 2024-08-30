@@ -1,0 +1,4 @@
+# Ignorar archivos específicos en la raíz del proyecto
+/api.js
+/index2.html
+/old script.js

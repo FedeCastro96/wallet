@@ -8,6 +8,8 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 .wallet-container {
@@ -17,11 +19,72 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 800px;
+    height: fit-content;
+    min-height: max-content;
+}
+.balance{
+    margin-bottom: 20px;
 }
 
-.balance, .purchase-section {
-    margin-bottom: 20px;
-    font-weight: bold;
+.balance p{
+    background-color: rgb(218, 237, 217); /* Fondo verde claro para cada párrafo */
+    padding: 10px; /* Espaciado interno para los párrafos */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra más sutil para un efecto de profundidad */
+    margin: 0; /* Eliminar márgenes predeterminados */
+
+}
+
+.purchase-section, .sale-section {
+
+    background-color: #f9f9f9; /* Fondo gris claro para un contraste suave */
+    /* padding: 15px; Espaciado interno para separación del texto */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera para efecto de profundidad */
+    margin-bottom: 20px; /* Espacio inferior para separar de otros elementos */
+    display: flex; /* Utilizar flexbox para alinear elementos */
+    vertical-align: auto;
+    gap: 10px; /* Espacio entre los elementos internos */
+    text-align: center;
+    max-width: 500px; /* Ancho máximo para mantener el diseño responsive */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+    align-items: center;
+}
+
+.purchase-section label, .sale-section label {
+    flex: 1;
+    text-align: right;
+    margin-right: 10px;
+    padding-left: 5px;
+    min-width: fit-content;
+}
+
+.purchase-section input, .sale-section input {
+    flex: 2;
+    margin-right: 10px;
+    padding: 5px;
+    max-width: 150px;
+    height: 18px;
+    align-items: center;
+}
+
+.purchase-section button, .sale-section button {
+    flex: 1;
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+.reiniciar{
+    margin-top:20px;
+    background-color: red;
 }
 
 button {
@@ -31,6 +94,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 90px;
 }
 
 button:hover {
@@ -51,9 +115,13 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .transaction-history{
+    height: fit-content;
     margin-top: 20px;
     text-align: left;
-    border: 1px solid blck;
+    max-height: 450px; /* Altura máxima para el historial */
+    overflow-y: auto;  /* Hacer scroll vertical cuando se exceda la altura */
+    padding: 10px;     /* Espaciado interno */
+
 }
 
 .transaction-history h2{
@@ -69,4 +137,28 @@ input[type="number"]::-webkit-inner-spin-button {
     border-radius: 5px;
     font-style: italic;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.reiniciar-cont{
+    height: fit-content;
+    position: auto;
+    display: flex;
+}
+
+#Nota {
+    font-size: 0.85em; /* Mantener el tamaño de fuente más pequeño */
+    font-style: italic; 
+    color: #444; 
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    border: 1px solid #ddd; 
+    border-radius: 5px; 
+    padding: 10px; 
+    margin-top: 10px; 
+    margin-bottom: 20px; 
+    text-align: center; 
+    width: 80%; 
+    max-width: 600px; /* Ancho máximo para mantener el texto legible */
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto; /* Centrar horizontalmente */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto de elevación */
 }
